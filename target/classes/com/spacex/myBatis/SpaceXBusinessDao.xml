@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spacex.dao.SpaceXBusinessDao" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.spacex.model.SpaceXBusinessModel" >
+	<result column="id" property="id"/>
+	<result column="business_id" property="business_id"/>
+	<result column="name" property="name"/>
+	<result column="branch_name" property="branch_name"/>
+	<result column="address" property="address"/>
+	<result column="city_id" property="city_id"/>
+	<result column="telephone" property="telephone"/>
+	<result column="latitude" property="latitude"/>
+	<result column="longitude" property="longitude"/>
+	<result column="avg_rating" property="avg_rating"/>
+	<result column="rating_img_url" property="rating_img_url"/>
+	<result column="rating_s_img_url" property="rating_s_img_url"/>
+	<result column="product_grade" property="product_grade"/>
+	<result column="decoration_grade" property="decoration_grade"/>
+	<result column="service_grade" property="service_grade"/>
+	<result column="product_score" property="product_score"/>
+	<result column="decoration_score" property="decoration_score"/>
+	<result column="service_score" property="service_score"/>
+	<result column="avg_price" property="avg_price"/>
+	<result column="review_count" property="review_count"/>
+	<result column="business_url" property="business_url"/>
+	<result column="photo_url" property="photo_url"/>
+	<result column="s_photo_url" property="s_photo_url"/>
+	<result column="photo_count" property="photo_count"/>
+	<result column="has_coupon" property="has_coupon"/>
+	<result column="coupon_id" property="coupon_id"/>
+	<result column="coupon_description" property="coupon_description"/>
+	<result column="coupon_url" property="coupon_url"/>
+	<result column="has_deal" property="has_deal"/>
+	<result column="deal_count" property="deal_count"/>
+	<result column="has_online_reservation" property="has_online_reservation"/>
+	<result column="online_reservation_url" property="online_reservation_url"/>
+	<result column="specialties" property="specialties"/>
+	<result column="popular_dishes" property="popular_dishes"/>
+	<result column="region_id" property="region_id"/>
+	<result column="sx_delete_flag" property="sx_delete_flag"/>
+	<result column="sx_create_time" property="sx_create_time"/>
+	<result column="sx_create_by_user_id" property="sx_create_by_user_id"/>
+	<result column="sx_update_time" property="sx_update_time"/>
+	<result column="sx_update_by_user_id" property="sx_update_by_user_id"/>
+	<result column="distance" property="distance"/>
+</resultMap>
+       
+<!-- sx_user table all fields -->
+<sql id="Base_Column_List" >
+	id,business_id,name,branch_name,address,city_id,telephone,latitude,longitude,avg_rating,rating_img_url,rating_s_img_url,product_grade,decoration_grade,service_grade,product_score,decoration_score,service_score,avg_price,review_count,business_url,photo_url,s_photo_url,photo_count,has_coupon,coupon_id,coupon_description,coupon_url,has_deal,deal_count,has_online_reservation,online_reservation_url,specialties,popular_dishes,sx_delete_flag,sx_create_time,sx_create_by_user_id,sx_update_time,sx_update_by_user_id
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+where 1=1
+<trim  suffixOverrides="," >
+	<if test="id != null" >
+	    and id =  #{id}
+	</if>
+	 	<if test="username != null and username != ''" >
+	    and username =  #{username}
+	</if>
+	 	<if test="email != null and email != ''" >
+	    and email =  #{email}
+	</if>
+	 	<if test="password != null and password != ''" >
+	    and password =  #{password}
+	</if>
+	 	<if test="wh_unino_id != null and wh_unino_id != ''" >
+	    and wh_unino_id =  #{wh_unino_id}
+	</if>
+	<if test="gender != null" >
+	    and gender =  #{gender}
+	</if>
+	 	<if test="birthday != null and birthday != ''" >
+	    and birthday =  #{birthday}
+	</if>
+	 	<if test="province != null and province != ''" >
+	    and province =  #{province}
+	</if>
+	 	<if test="city_id != null and city_id != ''" >
+	    and city_id =  #{city_id}
+	</if>
+	 	<if test="country != null and country != ''" >
+	    and country =  #{country}
+	</if>
+	 	<if test="headimgurl != null and headimgurl != ''" >
+	    and headimgurl =  #{headimgurl}
+	</if>
+	<if test="state != null" >
+	    and state =  #{state}
+	</if>
+	<if test="loginCount != null" >
+	    and loginCount =  #{loginCount}
+	</if>
+	<if test="loginTime != null" >
+	    and loginTime =  #{loginTime}
+	</if>
+	<if test="superAdmin != null" >
+	    and superAdmin =  #{superAdmin}
+	</if>
+	<if test="createTime != null" >
+	    and createTime =  #{createTime}
+	</if>
+	<if test="createBy != null" >
+	    and createBy =  #{createBy}
+	</if>
+	<if test="updateTime != null" >
+	    and updateTime =  #{updateTime}
+	</if>
+	<if test="updateBy != null" >
+	    and updateBy =  #{updateBy}
+	</if>
+	<if test="deleted != null" >
+	    and deleted =  #{deleted}
+	</if>
+</trim>
+</sql>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID()
+  </selectKey>
+  insert into sx_business(id,business_id,name,branch_name,address,city_id,telephone,latitude,longitude,avg_rating,rating_img_url,rating_s_img_url,product_grade,decoration_grade,service_grade,product_score,decoration_score,service_score,avg_price,review_count,business_url,photo_url,s_photo_url,photo_count,has_coupon,coupon_id,coupon_description,coupon_url,has_deal,deal_count,has_online_reservation,online_reservation_url,specialties,popular_dishes,sx_delete_flag,sx_create_time,sx_create_by_user_id,sx_update_time,sx_update_by_user_id)
+  values(#{id},#{business_id},#{name},#{branch_name},#{address},#{city_id},#{telephone},#{latitude},#{longitude},#{avg_rating},#{rating_img_url},#{rating_s_img_url},#{product_grade},#{decoration_grade},#{service_grade},#{product_score},#{decoration_score},#{service_score},#{avg_price},#{review_count},#{business_url},#{photo_url},#{s_photo_url},#{photo_count},#{has_coupon},#{coupon_id},#{coupon_description},#{coupon_url},#{has_deal},#{deal_count},#{has_online_reservation},#{online_reservation_url},#{specialties},#{popular_dishes},#{sx_delete_flag},now(),#{sx_create_by_user_id},now(),#{sx_update_by_user_id})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+   update sx_business set name=#{name},branch_name=#{branch_name},address=#{address},city_id=#{city_id},telephone=#{telephone},latitude=#{latitude},longitude=#{longitude},avg_rating=#{avg_rating},rating_img_url=#{rating_img_url},rating_s_img_url=#{rating_s_img_url},product_grade=#{product_grade},decoration_grade=#{decoration_grade},service_grade=#{service_grade},product_score=#{product_score},decoration_score=#{decoration_score},service_score=#{service_score},avg_price=#{avg_price},review_count=#{review_count},business_url=#{business_url},photo_url=#{photo_url},s_photo_url=#{s_photo_url},photo_count=#{photo_count},has_coupon=#{has_coupon},coupon_id=#{coupon_id},coupon_description=#{coupon_description},coupon_url=#{coupon_url},has_deal=#{has_deal},deal_count=#{deal_count},has_online_reservation=#{has_online_reservation},online_reservation_url=#{online_reservation_url},specialties=#{specialties},popular_dishes=#{popular_dishes},sx_delete_flag=#{sx_delete_flag},sx_update_time=now(),sx_update_by_user_id=#{sx_update_by_user_id} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sx_user set 
+	<trim  suffixOverrides="," >
+	<if test="username != null  and username != '' ">
+		username=#{username},
+	</if>
+	<if test="email != null  and email != '' ">
+		email=#{email},
+	</if>
+	<if test="password != null  and password != '' ">
+		password=#{password},
+	</if>
+	<if test="wh_unino_id != null  and wh_unino_id != '' ">
+		wh_unino_id=#{wh_unino_id},
+	</if>
+	<if test="gender != null  ">
+		gender=#{gender},
+	</if>
+	<if test="birthday != null  and birthday != '' ">
+		birthday=#{birthday},
+	</if>
+	<if test="province != null  and province != '' ">
+		province=#{province},
+	</if>
+	<if test="city_id != null  and city_id != '' ">
+		city_id=#{city_id},
+	</if>
+	<if test="country != null  and country != '' ">
+		country=#{country},
+	</if>
+	<if test="headimgurl != null  and headimgurl != '' ">
+		headimgurl=#{headimgurl},
+	</if>
+	<if test="state != null  ">
+		state=#{state},
+	</if>
+	<if test="loginCount != null  ">
+		loginCount=#{loginCount},
+	</if>
+	<if test="loginTime != null  ">
+		loginTime=#{loginTime},
+	</if>
+	<if test="superAdmin != null  ">
+		superAdmin=#{superAdmin},
+	</if>
+	<if test="createTime != null  ">
+		createTime=#{createTime},
+	</if>
+	<if test="createBy != null  ">
+		createBy=#{createBy},
+	</if>
+	<if test="updateTime != null  ">
+		updateTime=#{updateTime},
+	</if>
+	<if test="updateBy != null  ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="deleted != null  ">
+		deleted=#{deleted},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	update sx_business set sx_delete_flag=1 where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 用户管理 -->
+<select id="queryById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sx_business where business_id = #{business_id}
+</select>
+
+<!-- 根据id查询 用户管理 -->
+<select id="queryByPK"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sx_business where id = #{id}
+</select>
+
+<select id="queryList"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	from sx_business 
+	where name like CONCAT('%', #{key_word}, '%') 
+	      and sx_delete_flag = 0
+	      order by name desc
+</select>
+
+<select id="queryListByObj"  resultMap="BaseResultMap">
+	select <include refid="Base_Column_List" /> 
+	from sx_business 
+	where 
+	<if test="selectedName == null or selectedName == ''">
+	    name like CONCAT('%', #{keyWord}, '%') 
+	</if>
+	<if test="selectedName != null and selectedName != ''">
+	    (name like CONCAT('%', #{selectedName}, '%') or name like CONCAT('%', #{keyWord}, '%'))
+	</if>
+     and sx_delete_flag = 0
+     order by 
+     <if test="selectedName != null and selectedName != ''">
+	    name &lt;&gt;#{selectedName}, branch_name desc
+	 </if>
+     <if test="selectedName == null or selectedName == ''">
+        name desc
+	 </if>
+     <if test="startRow == null">
+	    limit #{pageSize}
+     </if>
+     <if test="startRow != null">
+	    limit #{startRow},#{pageSize}
+     </if>
+</select>
+
+
+<select id="queryTotalRows" resultType="java.lang.Integer" parameterType="Object">
+	select count(1) 
+	from sx_business 
+	where 
+	
+	<if test="selectedName == null or selectedName == ''">
+	    name like CONCAT('%', #{keyWord}, '%') 
+	</if>
+	<if test="selectedName != null and selectedName != ''">
+	    (name like CONCAT('%', #{selectedName}, '%') or name like CONCAT('%', #{keyWord}, '%'))
+	</if>
+	    and sx_delete_flag = 0
+</select>
+
+
+<select id="selectAutoComplete" resultMap="BaseResultMap" parameterType="Object">
+
+select <include refid="Base_Column_List" />
+	from sx_business 
+	where name like CONCAT('%', #{keyWord}, '%') 
+	      and sx_delete_flag = 0
+	      order by name desc
+		  limit #{auto_complete_num}
+</select>
+
+</mapper>   
